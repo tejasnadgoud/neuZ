@@ -1,2 +1,0 @@
-# neuZ
-News website project
