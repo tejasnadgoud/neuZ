@@ -49,7 +49,7 @@ class App extends Component {
           <img className="scriptLogo" src={news} alt="Javascript Logo" />
         </div> */}
         <Navbar />
-        <Search default="New York" />
+        <Search default="Facebook" />
         <Footer />
         {/* <Globe
           ref={this.globeRef}
