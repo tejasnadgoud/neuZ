@@ -25,7 +25,8 @@ class Search extends Component {
 
   handleChange(event) {
     event.preventDefault();
-    this.setState({ value: event.target.value });
+    this.setState({value:this.search.value});
+    // value: event.target.value 
     console.log("handle change search value: ",this.state.value);
   }
 
@@ -62,7 +63,7 @@ class Search extends Component {
           })}
         </select> */}
 
-       <input type="text" id="searchquery" defaultValue={this.state.value} ></input>
+       <input type="text" id="searchquery" ref={el => this.search=el}></input>
         <br/><br/>
         <button type="submit" className="btn btn-default" id="searchNews" onClick={this.handleChange}>Search</button>
         <Outlet default={this.state.value} />
