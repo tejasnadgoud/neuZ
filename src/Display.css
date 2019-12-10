@@ -45,6 +45,7 @@
     box-shadow: 0 4px 8px 0 rgba(2, 0, 1, 0.2);
     background-color: #E5E8E8;
     border-radius: 25px;
+    height:270px;
 }
 
 .card:hover {

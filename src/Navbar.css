@@ -67,6 +67,14 @@
 .navbar .nav-item i {
   font-size: 18px;
 }
+
+.navbar a {
+  text-decoration:none !important;
+}
+.nounderline { text-decoration: none !important }
+
+.navbar a:hover {text-decoration: underline;}
+
 .navbar .nav-item span {
   position: relative;
   top: 3px;
@@ -124,7 +132,7 @@
   background: transparent !important;
 }
 .navbar .nav .user-action {
-  padding: 9px 15px;
+  padding: 8px 15px;
 }
 .navbar .navbar-toggle {
   border-color: #fff;
@@ -169,6 +177,7 @@
     display: block;
     margin: 10px 0;
     padding: 0;
+
   }
   .navbar .navbar-nav {
     margin: 8px 0;

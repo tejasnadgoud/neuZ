@@ -1,68 +1,83 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
-import Search from "./Search.js";
-import "./Search.css";
-import Footer from "./Footer.js";
-import "./Footer.css";
-import logo from "./images/react.svg";
-import news from "./images/news.png";
-import Navbar from "./Navbar";
-//import * as THREE from "three";
-//mport Globe from "worldwind-react-globe";
-//import ReactGlobe from "react-globe";
+import { history } from './helpers/history';
+import { alertActions, userActions } from './actions';
+import { PrivateRoute } from './components';
+import { connect } from 'react-redux';
+import Welcome from './view/welcome';
+import Dashboard from './view/dashboard';
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: 34.2,
-      lon: -119.2,
-      alt: 10e6
+     
     };
     this.globeRef = React.createRef();
+    this.store = this.props.store;
+
+       history.listen((location, action) => {
+        // clear alert on location change
+         this.props.clearAlerts();
+     });
+    
   }
+  
+  componentDidMount(){
+    if(localStorage.getItem("user")){
+        //cont userobject = getAll()
+        this.setState({ loginStatus: "1" });
+        this.setState({username : localStorage.getItem("user") })
+        //this.setState({data : JSON.parse(localStorage.getItem("user")) })
+    } else {
+      this.setState({ loginStatus: "0" });
+      //this.setState({data : localStorage.getItem("user") })
+    }
+    
+//    this.props.getUsers();
+}
   render() {
-    const layers = [
-      "eox-sentinal2-labels",
-      "coordinates",
-      "view-controls",
-      "stars",
-      "atmosphere-day-night"
-    ];
-    navigator.geolocation.getCurrentPosition(function(position){
-      console.log(position);
-      // $.get("http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+
-      // position.coords.longitude+"&sensor=false", function(data){
-      //   console.log(data);
-      // })
-    })
+    const { user, users} = this.props;
+
     return (
+      
       <div className="app">
-        {/* <div className="appHeader">
-          <img className="appLogo" src={logo} alt="React Logo" />
-          <div className="title">
-            <h1>NEUz</h1>
-            <h4>
-              Powered by
-              <a href="https://newsapi.org/"> NEUZ </a>
-            </h4>
-          </div>
-          <img className="scriptLogo" src={news} alt="Javascript Logo" />
-        </div> */}
-        <Navbar />
-        <Search default="Facebook" />
-        <Footer />
-        {/* <Globe
-          ref={this.globeRef}
-          layers={layers}
-          latitude={this.state.lat}
-          longitude={this.state.lon}
-          altitude={this.state.alt}
-        /> */}
-        {/* <div style={{ width: "100vw", height: "100vh" }}>
-          <ReactGlobe />
-        </div> */}
+        
+       {(() => {
+          if(this.state.loginStatus === "1") {
+            return (
+              <Dashboard loginStatus={this.state.loginStatus} Username={this.state.username}/>
+            )
+          } else {
+            return (
+              <Welcome loginStatus={this.state.loginStatus}/>
+            )
+          }
+        })()}
       </div>
+      
     );
   }
 }
-export default App;
+//export default withGlobalState(App);
+
+
+// function mapState(state) {
+//   const { alert } = state;
+//   return { alert };
+// }
+function mapState(state) {
+  const { users, authentication } = state;
+  const { user } = authentication;
+  return { user, users };
+}
+
+const actionCreators = {
+  clearAlerts: alertActions.clear,
+  getUsers: userActions.getAll
+};
+
+const connectedApp = connect(mapState, actionCreators)(App);
+export { connectedApp as App };
+//export default App;
