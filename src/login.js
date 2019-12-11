@@ -9,6 +9,8 @@ import Profile from './profile';
 import {userActions} from './actions';
 import { connect } from 'react-redux';
 import { userConstants } from './constants';
+import Search from './Search';
+import Facebook from './components/facebook';
 
 class Login extends Component {
 	constructor(props) {
@@ -17,6 +19,7 @@ class Login extends Component {
 		this.state = {
 			user_name: '',
 			password: '',
+			email: '',
 			error: false,
 			loginSuccess: false
 		}
@@ -35,6 +38,12 @@ class Login extends Component {
 		});
 	}
 
+	handleOnChangeEmail = (e) => {
+		this.setState ({
+			email: e.target.email
+		})
+	}
+
 	 handleuserlogin = (UN) => {
 		 console.log(UN);
 	 	//this.store.dispatch(userlogin({user_name: UN}));
@@ -43,7 +52,8 @@ class Login extends Component {
 		const { history } = this.props;
 		const data = {
 			user_name: this.state.user_name,
-			password: this.state.password
+			password: this.state.password,
+			email: this.state.email
 		};
 		const user_name = this.state.user_name;
 		const password = this.state.password;
@@ -51,6 +61,7 @@ class Login extends Component {
 		console.log(this.state.user_name);
 		//const loginResult = await this.props.login(data); //await LoginService.login(data); //
 		const loginResult = await this.props.login(user_name,password);
+		// const loginResult=true;
 		 if(loginResult !== userConstants.LOGIN_SUCCESS) { //200
 		 	this.setState({
 		 		error: true,
@@ -73,8 +84,8 @@ class Login extends Component {
 		 	//history.push('/users')
 			
 		 		// return (
-		 		//   <Redirect to= '/Profile'/>
-		 		// )
+		 		//   <Search />
+		 		// );
 		 }
 			
 			  
@@ -93,11 +104,12 @@ class Login extends Component {
 			<div id="logreg-forms">
 				<h1 className="h3 mb-3 font-weight-normal">{ LOGIN_FIELDS.LOGIN_HEADING }</h1>
 				<form className="form-signin" onSubmit={this.onSubmit}>
-					{/* <div className="social-login">
-						<button className="btn facebook-btn social-btn" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
+					<div className="social-login">
+						<Facebook />
+						{/* <button className="btn facebook-btn social-btn" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button> */}
 						<button className="btn google-btn social-btn" type="button"><span><i className="fab fa-google-plus-g"></i> Sign in with Google+</span> </button>
 					</div>
-					<p> OR  </p> */}
+					<p> OR  </p>
 					<div>
 						<div className="fields">
 							<p>{ COMMON_FIELDS.USER_NAME }</p>

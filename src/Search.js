@@ -5,6 +5,8 @@ import './Display.css';
 import Outlet from './Outlet.js';
 import './Outlet.css';
 
+import { Button, ButtonGroup } from 'reactstrap';
+
 class Search extends Component {
   constructor(props) {
     // Pass props to parent class
@@ -22,6 +24,13 @@ class Search extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeList = this.handleChangeList.bind(this);
     this.searchQuery = this.searchQuery.bind(this);
+    this.handleTech=this.handleTech.bind(this);
+    this.handlePolitics = this.handlePolitics.bind(this);
+    this.handleScience = this.handleScience.bind(this);
+    this.handleSports = this.handleSports.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
+    this.handleHealth = this.handleHealth.bind(this);
+    this.handleDesign = this.handleDesign.bind(this);
     console.log("Value of search is: ", this.value);
     this.apiUrl = `https://newsapi.org/v2/sources?language=en&apiKey=${process.env.REACT_APP_API_KEY}`;
   }
@@ -35,6 +44,34 @@ class Search extends Component {
     event.preventDefault();
     this.setState({ value:event.target.value });
     console.log("handle change search value: ",this.state.value);
+  }
+  handleTech(event){
+    event.preventDefault();
+    this.setState({value: "Technology"});
+  }
+  handleScience(event){
+    event.preventDefault();
+    this.setState({value: "Science"});
+  }
+  handlePolitics(event){
+    event.preventDefault();
+    this.setState({value: "Politics"});
+  }
+  handleSports(event){
+    event.preventDefault();
+    this.setState({value: "Sports"});
+  }
+  handleDesign(event){
+    event.preventDefault();
+    this.setState({value: "Design"});
+  }
+  handleEnter(event){
+    event.preventDefault();
+    this.setState({value: "Entertainment"});
+  }
+  handleHealth(event){
+    event.preventDefault();
+    this.setState({value: "Health"});
   }
 
   searchQuery(event) {
@@ -112,7 +149,35 @@ class Search extends Component {
        {this.state.news_actions}
         <br/><br/>
         {this.state.btnShow && <button type="submit" className="btn btn-default" id="searchNews" onClick={this.handleChange}>Search</button>}
+        
         <Outlet default={this.state.value} />
+
+        
+          <ButtonGroup size="lg">
+            <Button onClick ={this.handleTech}>Technology</Button>
+            <Button onClick ={this.handleScience}>Science</Button>
+            <Button onClick ={this.handlePolitics}>Politics</Button>
+            <Button onClick ={this.handleSports}>Sports</Button>
+            <Button onClick ={this.handleEnter}>Entertainment</Button>
+            <Button onClick ={this.handleDesign}>Design</Button>
+            <Button onClick ={this.handleHealth}>Health</Button>
+   
+          </ButtonGroup>
+
+          {/* <ButtonGroup className="mt-3">
+            <Button>Left</Button>
+            <Button>Middle</Button>
+            <Button>Right</Button>
+          </ButtonGroup>
+          <ButtonGroup size="sm" className="mt-3">
+            <Button>Left</Button>
+            <Button>Middle</Button>
+            <Button>Right</Button>
+          </ButtonGroup> */}
+        
+       
+
+        
         <Display default={this.state.value} />
       </div>
     );

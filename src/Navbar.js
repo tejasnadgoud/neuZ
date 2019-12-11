@@ -8,7 +8,9 @@ import App from './App';
 import {Login} from "./login";
 import {Logout} from "./logout";
 import Search from "./Search.js";
+import About from "./About";
 import "./Search.css";
+
 //import {userlogin,userlogout} from './actions';
 //import { withGlobalState } from 'react-globally'
 
@@ -147,7 +149,7 @@ class Navbar extends Component {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a href="#" className="nav-link">
+                  <a href="/About" className="nav-link">
                     <i className="fa fa-gears"></i>
                     <span>About</span>
                   </a>
@@ -219,6 +221,10 @@ class Navbar extends Component {
             <Route
               exact path='/AllChannel'
               component={() => <Search default="bbc-news" loginstatus={this.props.loginStatus}/>}
+            />
+             <Route
+              exact path='/About'
+              component={() => <About />}
             />
             
           </Switch>

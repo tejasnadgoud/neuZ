@@ -4,6 +4,9 @@ import logoutuser from '../services/LogoutService';
 import {userService} from '../services/UserService';
 import { alertActions } from './';
 import { history } from '../helpers/history';
+import Search from '../Search';
+import React, { Component } from "react";
+
 
 export const userActions = {
     login,
@@ -23,7 +26,7 @@ function login(user_name,password) {
             .then(
                 user => {
                      dispatch(success(user));
-                     history.push('/');
+                     history.push(<Search />);
                      window.location.reload(true);
                      return user;
                  },
