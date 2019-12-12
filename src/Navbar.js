@@ -1,7 +1,27 @@
 import React, { Component } from "react";
 import "./Navbar.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import App from "./App";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import login from "./login";
+import Registration from './Registration';
+import App from './App';
+import { Login } from "./login";
+import { Logout } from "./logout";
+import Search from "./Search.js";
+import About from "./About";
+import "./Search.css";
+import PaypalButton from "./Paypal"
+
+//import {userlogin,userlogout} from './actions';
+//import { withGlobalState } from 'react-globally'
+
+const CLIENT = {
+  sandbox: "Adte5-SItgmpSukZQWLmATtBA0bK3bupDgZmQx2oGq_tBt5fff0iZ_h2pKRP6cZMR3_syoGdnh0Ej8iS",
+  production: process.env.PAYPAL_CLIENT_ID_PRODUCTION,
+};
+const ENV = process.env.NODE_ENV === 'production'
+  ? 'production'
+  : 'sandbox';
 
 class Navbar extends Component {
   constructor(props) {
@@ -11,21 +31,111 @@ class Navbar extends Component {
     this.state = {
       data: [],
       count: 0,
+      isLoggedIn: this.props.loginStatus,
       // value:'bbc-news'
-      value: this.props.default
+      value: this.props.default,
+      auth: this.props.auth,
+      usename: this.props.data, //localStorage.getItem('user')
+      // username : (JSON.parse(JSON.stringify(this.props.data), (key, value) => {
+      //             return value[0]}))
     };
+    //this.toggle = this.toggle.bind(this);
+    this.store = this.props.store;
+    //this.name = this.props.data.user_name;
+    // if(this.state.data){
+    //   const userStr = JSON.stringify(this.state.data);
+    //   this.name = JSON.parse(userStr, (key, value) => {
+    //     if (typeof key === 'user_name') {
+    //       return value;
+    //     }})
+    // }
+
+
+    //this.checkAuthState();
+    //this.props.setGlobalState({auth:this.state.auth});
   }
 
+  componentDidMount() {
+    this.checkAuthState();
+
+  }
+
+  // componentWillMount() {
+  //   this.checkAuthState();
+
+  // }
+  // toggle() {
+  //   this.setState({
+  //     modal: !this.state.modal
+  //   });
+  // }
+
+  checkAuthState() {
+
+    if (!this.props.loginStatus) { //(!this.state.auth){
+      // If user is logged out
+      this.state.user_actions = <ul className="nav navbar-nav navbar-right ml-auto">
+        <li className="nav-item dropdown">
+          <a href="#" data-toggle="dropdown" className="nav-link dropdown-toggle user-action">
+            <i className="fa fa-user"></i>
+            Sign up
+                                        </a>
+          <ul className="dropdown-menu">
+            <li>
+              <a href="/login" className="dropdown-item">
+                Login
+                                            </a>
+            </li>
+            <li>
+              <a href="/register" className="dropdown-item">
+                Register
+                                            </a>
+            </li>
+
+          </ul>
+        </li>
+      </ul>;
+
+
+      this.setState({
+        user_actions: this.state.user_actions
+      });
+    }
+
+    if (this.props.loginStatus) { //(this.state.auth){
+      // If user is logged in
+      this.state.user_actions = <ul className="nav navbar-nav navbar-right ml-auto">
+        <li className="nav-item dropdown">
+          <a href="#" data-toggle="dropdown" className="nav-link dropdown-toggle user-action">
+            <i className="fa fa-user"></i>
+            User : {this.state.usename}
+          </a>
+          <ul className="dropdown-menu">
+            <li>
+              <a href="/logout" className="dropdown-item">
+                Logout
+                                            </a>
+            </li>
+          </ul>
+        </li>
+      </ul>;
+      this.setState({
+        user_actions: this.state.user_actions
+      });
+    }
+  }
+
+
+
   render() {
+    //const { authenticate } = this.state.auth;
+    //this.checkAuthState();
     return (
       <Router>
         <div>
           <nav className="navbar navbar-inverse navbar-expand-xl navbar-dark">
             <div className="navbar-header d-flex col">
-              {/* <a className="navbar-brand" href="#">
-                <i className="fa fa-cube"></i>Brand<b>Name</b>
-              </a> */}
-              <a className="nav-link navbar-brand" href="#">
+              <a className="nav-link navbar-brand" href="/AllChannel">
                 neuZ <i className="fa glyphicon glyphicon-send fa-1x"></i>
               </a>
               <button
@@ -44,28 +154,15 @@ class Navbar extends Component {
               id="navbarCollapse"
               className="collapse navbar-collapse justify-content-start"
             >
-              {/* <form className="navbar-form form-inline">
-                <div className="input-group search-box">
-                  <input
-                    type="text"
-                    id="search"
-                    className="form-control"
-                    placeholder="Search here..."
-                  ></input>
-                  <span className="input-group-addon">
-                    <i className="material-icons">&#xE8B6;</i>
-                  </span>
-                </div>
-              </form> */}
               <ul className="nav navbar-nav navbar-left ml-auto">
                 <li className="nav-item active">
-                  <a href="#" className="nav-link">
+                  <a href="/AllChannel" className="nav-link">
                     <i className="fa fa-home"></i>
                     <span>Home</span>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a href="#" className="nav-link">
+                  <a href="/About" className="nav-link">
                     <i className="fa fa-gears"></i>
                     <span>About</span>
                   </a>
@@ -88,18 +185,6 @@ class Navbar extends Component {
                     <span>Careers</span>
                   </a>
                 </li>
-                {/* <li className="nav-item">
-                  <a href="#" className="nav-link">
-                    <i className="fa fa-envelope"></i>
-                    <span>Messages</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="#" className="nav-link">
-                    <i className="fa fa-bell"></i>
-                    <span>Notifications</span>
-                  </a>
-                </li> */}
                 <li className="nav-item dropdown">
                   <a
                     href="#"
@@ -111,37 +196,48 @@ class Navbar extends Component {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <a href="#" className="dropdown-item">
-                        News Channel
+                      <a href="/AllChannel" className="dropdown-item">
+                        All Channel
                       </a>
                     </li>
-                    <li>
+                    {/* <li>
                       <a href="#" className="dropdown-item">
                         Sports
                       </a>
-                    </li>
+                    </li> */}
                     <li>
                       <a href="#" className="dropdown-item">
                         Weather
                       </a>
                     </li>
-
-                    <li>
+                    {/* <li>
                       <a href="#" className="dropdown-item">
                         Politics
                       </a>
-                    </li>
+                    </li> */}
                   </ul>
                 </li>
+                {
+                  this.state.isLoggedIn &&
+                  <li className="nav-item">
+                    {/* <Link to="/pay" className="nav-link">
+                      <i className="fa fa-money"></i>
+                      <span>Support Us</span>
+                    </Link> */}
+                    <PaypalButton
+                      client={CLIENT}
+                      env={ENV}
+                      commit={true}
+                      currency={'USD'}
+                      total={100}
+                    />
+                  </li>
+
+                }
+
+
               </ul>
-              <ul className="nav navbar-nav navbar-right ml-auto">
-                <li className="nav-item active">
-                  <a href="#" className="nav-link">
-                    <i className="fa fa-user"></i>
-                    <span>User</span>
-                  </a>
-                </li>
-              </ul>
+              {this.state.user_actions}
             </div>
           </nav>
           <hr />
@@ -149,6 +245,21 @@ class Navbar extends Component {
             {/* <Route exact path="/" component={App} />
             <Route path="/contact" component={App} />
             <Route path="/about" component={App} /> */}
+            {/* <Route path="/login" component={() => <Login auth={this.state.auth} />} /> */}
+            <Route path="/login" children={props => <Login store={this.store} />} />
+            <Route path="/logout" children={props => <Logout />} />
+            <Route path="/register" component={Registration} />
+            {/* <Route path="/pay" children={props => <Paypal />} /> */}
+            {/* <Route path="/pay" /> */}
+            <Route
+              exact path='/AllChannel'
+              component={() => <Search default="bbc-news" loginstatus={this.props.loginStatus} />}
+            />
+            <Route
+              exact path='/About'
+              component={() => <About />}
+            />
+
           </Switch>
         </div>
       </Router>
@@ -156,4 +267,6 @@ class Navbar extends Component {
   }
 }
 
+
+//export default withGlobalState(Navbar);
 export default Navbar;
