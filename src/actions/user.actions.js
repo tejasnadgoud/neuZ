@@ -27,7 +27,7 @@ function login(user_name, password) {
         if (res === 200) {
           localStorage.setItem("user", user_name);
           dispatch(success(user_name));
-          history.push("/");
+          history.push("/AllChannel");
           window.location.reload(true);
         } else {
           const err = "Username and/or Password incorrect";

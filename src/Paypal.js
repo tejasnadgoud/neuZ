@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import scriptLoader from 'react-async-script-loader';
+
 class PaypalButton extends React.Component {
     constructor(props) {
         super(props);
@@ -34,7 +35,7 @@ class PaypalButton extends React.Component {
             }
         }
     }
-    render() {        
+    render() {
         const paypal = window.PAYPAL
         const {
             total,
@@ -60,8 +61,10 @@ class PaypalButton extends React.Component {
                     },
                 ],
             });
+
         const onAuthorize = (data, actions) =>
             actions.payment.execute()
+
                 .then(() => {
                     const payment = {
                         paid: true,
@@ -72,6 +75,7 @@ class PaypalButton extends React.Component {
                         returnUrl: data.returnUrl,
                     };
                     onSuccess(payment);
+
                 });
         return (
             <div>
