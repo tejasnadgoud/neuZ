@@ -51,7 +51,7 @@ class Welcome extends Component {
         <Switch>
         <Route exact path="/" children={props => <Search default="bbc-news" loginstatus={this.props.loginStatus}/>}/>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
         
       </div>
       </Router>

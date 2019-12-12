@@ -60,7 +60,7 @@ class Dashboard extends Component {
         
         </Switch>
        
-        <Footer />
+        {/* <Footer /> */}
         
       </div>
       </Router>

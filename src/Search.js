@@ -117,7 +117,7 @@ class Search extends Component {
         });
       }
 
-      if(this.props.loginstatus === '0') {
+      if(this.props.loginstatus === '0') {        
         this.state.authmessage = <h1>Please sign up and suscribe to see all News Channel Details</h1>
         this.state.news_actions = <input type="text" id="searchquery" ref={el => this.search=el}></input>;
         this.setState({
