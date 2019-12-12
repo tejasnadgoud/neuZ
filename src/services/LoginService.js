@@ -1,25 +1,41 @@
-import axios from 'axios';
+export const loginService = {
+  login,
+  GetUsers
+};
 
-// export const loginuser = data => {
-// //function login(data){
-//     localStorage.setItem('user', data);
+function login(user_name, password) {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ user_name, password })
+  };
 
-// 	return axios.post('http://localhost:4000/registration/login', data)
-// 		.then(res => res.status)
-	
-// }
+  return (
+    fetch(`http://localhost:4000/registration/login`, requestOptions)
+      //.then(handleResponse)
+      .then(res => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
 
-// export const logoutuser = () => {
-//     // remove user from local storage to log user out
-//     localStorage.removeItem('user');
-// }
-
-
-const loginuser = (user_name,password) => {
-	var data = JSON.stringify({ user_name, password });
-    localStorage.setItem('user', user_name);
-	return axios.post('http://localhost:4000/registration/login', data)
-		.then(res => res.status)
+        return res.status;
+      })
+  );
 }
 
-export default loginuser;
+function GetUsers(user_name) {
+  //  const requestOptions = {
+  //      method: 'POST',
+  //      headers: { 'Content-Type': 'application/json' },
+  //      body: JSON.stringify({user_name})
+  //  };
+
+  return fetch(`http://localhost:4000/registration/getUserByUserName`).then(
+    function(res) {
+      return res.data;
+    }
+  );
+
+  // axios.get('http://localhost:4000/registration/getUserByUserName/',requestOptions)
+  //     .then(response => {
+  //         return  JSON.parse(response.data);
+  //     })
+}
