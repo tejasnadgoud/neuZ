@@ -206,56 +206,51 @@ class Navbar extends Component {
                         All Channel
                       </a>
                     </li>
-                    {/* <li>
-                      <a href="#" className="dropdown-item">
-                        Sports
-                      </a>
-                    </li> */}
                     <li>
                       <a href="#" className="dropdown-item">
                         Weather
                       </a>
                     </li>
-                    {/* <li>
-                      <a href="#" className="dropdown-item">
-                        Politics
-                      </a>
-                    </li> */}
                   </ul>
                 </li>
-                {this.state.isLoggedIn && (
-                  <li className="nav-item">
-                    {/* <Link to="/pay" className="nav-link">
+                {
+                  this.state.isLoggedIn &&
+                  <li className="nav-item dropdown">
+                    <a
+                      href="#"
+                      data-toggle="dropdown"
+                      className="nav-link dropdown-toggle user-action"
+                    >
                       <i className="fa fa-money"></i>
                       <span>Support Us</span>
-                    </Link> */}
-                    <PaypalButton
-                      client={CLIENT}
-                      env={ENV}
-                      commit={true}
-                      currency={"USD"}
-                      total={100}
-                    />
+                    </a>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <a className="dropdown-item">
+                          <PaypalButton
+                            client={CLIENT}
+                            env={ENV}
+                            commit={true}
+                            currency={'USD'}
+                            total={100}
+                          />
+                        </a>
+                      </li>
+                    </ul>
                   </li>
-                )}
+                }
               </ul>
               {this.state.user_actions}
             </div>
           </nav>
           <hr />
           <Switch>
-            {/* <Route exact path="/" component={App} />
-            <Route path="/contact" component={App} />
-            <Route path="/about" component={App} /> */}
-            {/* <Route path="/login" component={() => <Login auth={this.state.auth} />} /> */}
             <Route
               path="/login"
               children={props => <Login store={this.store} />}
             />
             <Route path="/logout" children={props => <Logout />} />
             <Route path="/register" component={Registration} />
-            {/* <Route path="/pay" children={props => <Paypal />} /> */}
-            {/* <Route path="/pay" /> */}
             <Route
               exact
               path="/AllChannel"

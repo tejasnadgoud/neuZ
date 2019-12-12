@@ -15,8 +15,8 @@ class Search extends Component {
     this.state = {
       data: [],
       count: 0,
-      // value:'bbc-news'
-      value: this.props.default,
+      value:'boston',
+      // value: this.props.default,
       Islogin : this.props.loginstatus,
       btnShow: true
     };
@@ -99,9 +99,45 @@ class Search extends Component {
   checkNewsChannelDetails(){
 
       if(this.props.loginstatus === '1') {
+        // this.state.btnShow=false
+        // this.state.authmessage = <h1></h1>
+        // this.state.news_actions = <select value={this.state.value} onChange={this.handleChangeList}>
+
+        //                             {this.state.data.map((outlet, i) => {
+        //                               return (
+        //                                 <option key={i} value={outlet.id}>
+        //                                   {outlet.name}
+        //                                 </option>
+        //                               );
+        //                             })}
+        //                           </select>;
+        //   this.setState({
+        //     news_actions : this.state.news_actions,
+        //     authmessage : this.state.authmessage
+        // });
+        this.state.authmessage = <h1></h1>
+
+        this.state.news_actions = <input type="text" id="searchquery" ref={el => this.search=el}></input>;
+        this.setState({
+            news_actions : this.state.news_actions,
+            authmessage : this.state.authmessage
+        });
+      }
+
+      if(this.props.loginstatus === '0') {
+        // this.state.authmessage = <h1>Please sign up and suscribe to see all News Channel Details</h1>
+        // this.state.news_actions = <input type="text" id="searchquery" ref={el => this.search=el}></input>;
+        // this.setState({
+        //     news_actions : this.state.news_actions,
+        //     authmessage : this.state.authmessage
+        // });
+
+
+
+
         this.state.btnShow=false
         this.state.authmessage = <h1></h1>
-        this.state.news_actions = <select value={this.state.value} onChange={this.handleChangeList}>
+        this.state.news_actions = <select onChange={this.handleChangeList}>
 
                                     {this.state.data.map((outlet, i) => {
                                       return (
@@ -116,24 +152,19 @@ class Search extends Component {
             authmessage : this.state.authmessage
         });
       }
-
-      if(this.props.loginstatus === '0') {
-        this.state.authmessage = <h1>Please sign up and suscribe to see all News Channel Details</h1>
-        this.state.news_actions = <input type="text" id="searchquery" ref={el => this.search=el}></input>;
-        this.setState({
-            news_actions : this.state.news_actions,
-            authmessage : this.state.authmessage
-        });
-      }
   }
 
   render() {
     return (
       <div className="">
+        <br/><br/>
         {/* <h4>Select from {this.state.count} News Outlets</h4> */}
         <h4>What do you want to know</h4>
 
-        {/* <select value={this.state.value} onChange={this.handleChange}>
+
+
+
+        {/* <select value={this.state.value} onChange={this.handleChangeList}>
           >
           {this.state.data.map((outlet, i) => {
             return (
@@ -147,6 +178,8 @@ class Search extends Component {
        {/* <input type="text" id="searchquery" value={this.state.value} ></input> */}
        {this.state.authmessage}
        {this.state.news_actions}
+
+
         <br/><br/>
         {this.state.btnShow && <button type="submit" className="btn btn-default" id="searchNews" onClick={this.handleChange}>Search</button>}
 
