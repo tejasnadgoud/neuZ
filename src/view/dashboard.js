@@ -34,6 +34,7 @@ class Dashboard extends Component {
 
   componentDidMount() {}
   render() {
+    console.log("User city in dashboard: ", this.props.userCity);
     const { alert } = this.props;
     const layers = [
       "eox-sentinal2-labels",
@@ -58,7 +59,7 @@ class Dashboard extends Component {
               path="/search"
               component={() => (
                 <Search
-                  default="bbc-news"
+                  default={this.props.userCity}
                   loginstatus={this.props.loginStatus}
                 />
               )}

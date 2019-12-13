@@ -7,11 +7,15 @@ import { PrivateRoute } from "./components";
 import { connect } from "react-redux";
 import Welcome from "./view/welcome";
 import Dashboard from "./view/dashboard";
+import axios from "axios";
+const requestUrl = "http://ip-api.com/json";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      userCity: "New York"
+    };
     this.globeRef = React.createRef();
     this.store = this.props.store;
 
@@ -23,16 +27,31 @@ class App extends Component {
 
   componentDidMount() {
     if (localStorage.getItem("user")) {
-      //cont userobject = getAll()
       this.setState({ loginStatus: "1" });
       this.setState({ username: localStorage.getItem("user") });
-      //this.setState({data : JSON.parse(localStorage.getItem("user")) })
+    }
+    axios.get(requestUrl).then(res => {
+      console.log(
+        "Before using user's location, default city is: ",
+        this.state.userCity
+      );
+      console.log("User location data is: ", res);
+      console.log(
+        "User city after detecting their location is: ",
+        res.data.city
+      );
+
+      this.setState({
+        userCity: res.data.city
+      });
+    });
+
+    if (localStorage.getItem("user")) {
+      this.setState({ loginStatus: "1" });
+      this.setState({ username: localStorage.getItem("user") });
     } else {
       this.setState({ loginStatus: "0" });
-      //this.setState({data : localStorage.getItem("user") })
     }
-
-    //    this.props.getUsers();
   }
   render() {
     //const { user, users} = this.props;
@@ -46,6 +65,7 @@ class App extends Component {
               <Dashboard
                 loginStatus={this.state.loginStatus}
                 Userdetails={user}
+                userCity={this.state.userCity}
               />
             );
           } else {

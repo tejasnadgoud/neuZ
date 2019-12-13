@@ -11,6 +11,7 @@ import Search from "./Search.js";
 import About from "./About";
 import "./Search.css";
 import PaypalButton from "./Paypal";
+import { Updateprofile } from "./updateprofile";
 
 //import {userlogin,userlogout} from './actions';
 //import { withGlobalState } from 'react-globally'
@@ -123,6 +124,11 @@ class Navbar extends Component {
                   Logout
                 </a>
               </li>
+              <li>
+                <a href="/updateprofile" className="dropdown-item">
+                  Profile
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -224,18 +230,28 @@ class Navbar extends Component {
                   </ul>
                 </li>
                 {this.state.isLoggedIn && (
-                  <li className="nav-item">
-                    {/* <Link to="/pay" className="nav-link">
+                  <li className="nav-item dropdown">
+                    <a
+                      href="#"
+                      data-toggle="dropdown"
+                      className="nav-link dropdown-toggle user-action"
+                    >
                       <i className="fa fa-money"></i>
                       <span>Support Us</span>
-                    </Link> */}
-                    <PaypalButton
-                      client={CLIENT}
-                      env={ENV}
-                      commit={true}
-                      currency={"USD"}
-                      total={100}
-                    />
+                    </a>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <a className="dropdown-item">
+                          <PaypalButton
+                            client={CLIENT}
+                            env={ENV}
+                            commit={true}
+                            currency={"USD"}
+                            total={100}
+                          />
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                 )}
               </ul>
@@ -254,8 +270,6 @@ class Navbar extends Component {
             />
             <Route path="/logout" children={props => <Logout />} />
             <Route path="/register" component={Registration} />
-            {/* <Route path="/pay" children={props => <Paypal />} /> */}
-            {/* <Route path="/pay" /> */}
             <Route
               exact
               path="/AllChannel"
@@ -267,6 +281,13 @@ class Navbar extends Component {
               )}
             />
             <Route exact path="/About" component={() => <About />} />
+            <Route
+              exact
+              path="/updateprofile"
+              children={props => (
+                <Updateprofile username={this.state.userdetails} />
+              )}
+            />
           </Switch>
         </div>
       </Router>
