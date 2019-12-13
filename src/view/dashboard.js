@@ -34,7 +34,7 @@ class Dashboard extends Component {
 
   componentDidMount() {}
   render() {
-    console.log("User city in dashboard: ", this.props.userCity)
+    console.log("User city in dashboard: ", this.props.userCity);
     const { alert } = this.props;
     const layers = [
       "eox-sentinal2-labels",
@@ -70,7 +70,6 @@ class Dashboard extends Component {
 
           {/* <Footer /> */}
         </div>
-
       </Router>
     );
   }
