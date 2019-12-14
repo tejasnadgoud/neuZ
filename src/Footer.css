@@ -1,81 +1,72 @@
 .footerSection {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin: 0px 0px 10px 0px;
-	background: grey;
-	padding-bottom: 0;
-	position: relative;
+  padding-bottom: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px 0px 10px 0px;
+  margin-top: auto;
+  background: white;
+  position: fixed;
+  width: 100%;
 }
-
-.customfooter { 
-	position: fixed; 
-	padding: 10px 10px 0px 10px; 
-	bottom: 0; 
-	width: 100%; 
-	/* Height of the footer*/  
-	height: 100px; 
-	background: grey; 
-} 
-
+.customfooter {
+  position: fixed;
+  padding: 10px 10px 0px 10px;
+  bottom: 0;
+  width: 100%;
+  /* Height of the footer*/
+  height: 100px;
+  background: grey;
+}
 .footerSection a {
-	border-bottom: 1px solid white;
+  border-bottom: 1px solid white;
 }
-
 .footerSection a:hover {
-	border-bottom: 2px solid white;
+  border-bottom: 2px solid white;
 }
-
 .fa-github {
-	color: #131418;
+  color: #131418;
 }
-
 .fa-twitter {
-	color: #55acee;
+  color: #55acee;
 }
-
 .fa-linkedin {
-	color: #0077B5;
+  color: #0077b5;
 }
-
 .fa-instagram {
-	color: #df2029;
+  color: #df2029;
 }
-
 .fa-coffee {
-	color: #4E342E;
+  color: #4e342e;
 }
-
 .fa {
-	margin: 7px;
-	transition: 0.4s all ease-in;
-	text-shadow: 0px 0px 0px white;
+  margin: 7px;
+  transition: 0.4s all ease-in;
+  text-shadow: 0px 0px 0px white;
 }
-
 .fa:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
-
+.fa-facebook:hover,
+.fa-google-plus:hover,
+.fa-skype:hover,
 .fa-github:hover,
 .fa-twitter:hover,
 .fa-linkedin:hover {
-	transform: rotate(360deg);
+  transform: rotate(360deg);
 }
-
 .fa-arrow-up {
-	transition: 0.2s all ease-in;
+  transition: 0.2s all ease-in;
 }
-
 .fa-arrow-up:hover {
-	transform: scale(1.05);
+  transform: scale(1.05);
 }
-
 #repo {
-	margin-left: 10px;
-	text-decoration: none;
-	border-bottom: 2px solid #ffc600;
+  margin-left: 10px;
+  text-decoration: none;
+  border-bottom: 2px solid #ffc600;
 }
-
-#repo:hover{
-  border-bottom: 2px solid #FF8F00;
+#repo:hover {
+  border-bottom: 2px solid #ff8f00;
 }

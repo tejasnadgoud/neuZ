@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import './Outlet.css';
-import { findFlag } from './helpers';
+import React, { Component } from "react";
+import axios from "axios";
+import "./Outlet.css";
+import { findFlag } from "./helpers";
 
 class Outlet extends Component {
   constructor(props) {
@@ -28,21 +28,22 @@ class Outlet extends Component {
 
   getSources() {
     // Make HTTP reques with Axios
-    console.log("Value of search queryis: ",this.value);
-    axios.get(`https://newsapi.org/v2/sources?language=en&apiKey=${process.env.REACT_APP_API_KEY}`).then(res => {
-      // Set state with result
-      this.setState({ data: res.data.sources });
-    });
+    console.log("Value of search queryis: ", this.value);
+    axios
+      .get(
+        `https://newsapi.org/v2/sources?language=en&apiKey=${process.env.REACT_APP_API_KEY}`
+      )
+      .then(res => {
+        // Set state with result
+        this.setState({ data: res.data.sources });
+      });
   }
 
   render() {
     return (
       <div className="outletSection">
         <h4>
-          Outlet Description{' '}
-          <span role="img" aria-label="Newspaper Emoji">
-            📰
-          </span>
+          <span role="img" aria-label="Newspaper Emoji"></span>
         </h4>
 
         {this.state.data.map((item, y) => {
@@ -51,11 +52,19 @@ class Outlet extends Component {
               <div key={y} className="singleNew">
                 <div className="generalInfo">
                   <h4>
-                    <a href={item.url} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {item.name}
                     </a>
                   </h4>
-                  <img className="flagCode" src={findFlag(item.country)} alt="flag" />
+                  <img
+                    className="flagCode"
+                    src={findFlag(item.country)}
+                    alt="flag"
+                  />
                   <p>{item.country.toUpperCase()}</p>
                   <p>{item.category.replace(/\b\w/g, l => l.toUpperCase())}</p>
                   <p>{item.language.toUpperCase()}</p>

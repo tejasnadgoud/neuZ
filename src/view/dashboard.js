@@ -44,9 +44,8 @@ class Dashboard extends Component {
       "atmosphere-day-night"
     ];
     return (
-      
       <Router>
-        <div className="app">
+        <div className="app page-container1">
           {/* <div>Dashboard</div> */}
           {/* <Navbar loginStatus={this.props.loginStatus} data={this.props.Username}/> */}
           <Navbar
@@ -78,7 +77,7 @@ class Dashboard extends Component {
             {/* <Route exact path="/profile" component={Profile} /> */}
           </Switch>
 
-          {/* <Footer /> */}
+          <Footer className="finalFooter" />
         </div>
       </Router>
     );
