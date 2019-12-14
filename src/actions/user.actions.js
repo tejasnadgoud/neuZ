@@ -10,7 +10,8 @@ import React, { Component } from "react";
 
 export const userActions = {
   login,
-  logout
+  logout,
+  update
   // register,
   //getAll,
   // delete: _delete
@@ -130,3 +131,51 @@ function getAll() {
 //     function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
 //     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
 // }
+
+function update(
+  id,
+  first_name,
+  last_name,
+  email,
+  phoneNumber,
+  oldpassword,
+  Newpassword,
+  ispasswordchangd
+) {
+  //console.log(data);
+  const password = ispasswordchangd === 1 ? Newpassword : oldpassword;
+  return dispatch => {
+    dispatch(request({ id }));
+    //loginuser(user_name,password) //await
+    //return loginResult
+    userService
+      .update(id, first_name, last_name, email, phoneNumber, password)
+      .then(
+        res => {
+          if (res === 200) {
+            const suc = "Succesfully Update User Details";
+            dispatch(success(id));
+            dispatch(alertActions.success(suc));
+          } else {
+            const err = "Error Update User Details";
+            dispatch(failure(err));
+            dispatch(alertActions.error(err));
+          }
+        },
+        error => {
+          dispatch(failure(error.toString()));
+          dispatch(alertActions.error(error.toString()));
+        }
+      );
+  };
+
+  function request(userid) {
+    return { type: userConstants.USER_UPDATE_REQUEST, userid };
+  }
+  function success(userid) {
+    return { type: userConstants.USER_UPDATE_SUCCESS, userid };
+  }
+  function failure(userid) {
+    return { type: userConstants.USER_UPDATE_FAILURE, userid };
+  }
+}

@@ -102,21 +102,24 @@ class Login extends Component {
     const { alert, loggingIn } = this.props;
 
     return (
+      <div>
+        <br/><br/><br/>
       <div id="logreg-forms">
+        
         <h1 className="h3 mb-3 font-weight-normal">
           {LOGIN_FIELDS.LOGIN_HEADING}
         </h1>
         <form className="form-signin" onSubmit={this.onSubmit}>
-          <div className="social-login">
+          {/* <div className="social-login">
             <Facebook />
-            {/* <button className="btn facebook-btn social-btn" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button> */}
+            <button className="btn facebook-btn social-btn" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
             <button className="btn google-btn social-btn" type="button">
               <span>
                 <i className="fab fa-google-plus-g"></i> Sign in with Google+
               </span>{" "}
             </button>
           </div>
-          <p> OR </p>
+          <p> OR </p> */}
           <div>
             <div className="fields">
               <p>{COMMON_FIELDS.USER_NAME}</p>
@@ -156,6 +159,7 @@ class Login extends Component {
         {alert.message && (
           <div className={`alert ${alert.type}`}>{alert.message}</div>
         )}
+      </div>
       </div>
     );
   }

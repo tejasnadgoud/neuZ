@@ -11,6 +11,8 @@ import Search from "./Search.js";
 import About from "./About";
 import "./Search.css";
 import PaypalButton from "./Paypal";
+import { Updateprofile } from "./updateprofile";
+import Main from './Stock/Main'
 
 //import {userlogin,userlogout} from './actions';
 //import { withGlobalState } from 'react-globally'
@@ -123,6 +125,11 @@ class Navbar extends Component {
                   Logout
                 </a>
               </li>
+              <li>
+                <a href="/updateprofile" className="dropdown-item">
+                  Profile
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -180,9 +187,9 @@ class Navbar extends Component {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a href="#" className="nav-link">
+                  <a href="/Stock" className="nav-link">
                     <i className="fa fa-pie-chart"></i>
-                    <span>Reports</span>
+                    <span>Stock</span>
                   </a>
                 </li>
                 <li className="nav-item">
@@ -213,8 +220,7 @@ class Navbar extends Component {
                     </li>
                   </ul>
                 </li>
-                {
-                  this.state.isLoggedIn &&
+                {this.state.isLoggedIn && (
                   <li className="nav-item dropdown">
                     <a
                       href="#"
@@ -231,20 +237,25 @@ class Navbar extends Component {
                             client={CLIENT}
                             env={ENV}
                             commit={true}
-                            currency={'USD'}
+                            currency={"USD"}
                             total={100}
+                            username={this.state.userdetails}
                           />
                         </a>
                       </li>
                     </ul>
                   </li>
-                }
+                )}
               </ul>
               {this.state.user_actions}
             </div>
           </nav>
           <hr />
           <Switch>
+            {/* <Route exact path="/" component={App} />
+            <Route path="/contact" component={App} />
+            <Route path="/about" component={App} /> */}
+            {/* <Route path="/login" component={() => <Login auth={this.state.auth} />} /> */}
             <Route
               path="/login"
               children={props => <Login store={this.store} />}
@@ -262,6 +273,14 @@ class Navbar extends Component {
               )}
             />
             <Route exact path="/About" component={() => <About />} />
+            <Route exact path="/Stock" component={() => <Main />} />
+            <Route
+              exact
+              path="/updateprofile"
+              children={props => (
+                <Updateprofile username={this.state.userdetails} />
+              )}
+            />
           </Switch>
         </div>
       </Router>
