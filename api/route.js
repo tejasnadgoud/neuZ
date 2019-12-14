@@ -64,6 +64,22 @@ registrationRoutes.route("/updateUser").post(function(req, res) {
   );
 });
 
+registrationRoutes.route("/updatedonationamount").post(function(req, res) {
+  Registration.findByIdAndUpdate(
+    req.body.id,
+    {
+      donationAmount: req.body.donationAmount
+    },
+    function(err) {
+      if (err) {
+        res.send(err);
+        return;
+      }
+      res.send({ data: "Record has been Updated..!!" });
+    }
+  );
+});
+
 // Username validation Router
 registrationRoutes
   .route("/getUserByUserName/:username")

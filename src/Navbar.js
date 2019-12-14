@@ -239,6 +239,7 @@ class Navbar extends Component {
                             commit={true}
                             currency={"USD"}
                             total={100}
+                            username={this.state.userdetails}
                           />
                         </a>
                       </li>

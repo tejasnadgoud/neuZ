@@ -132,8 +132,18 @@ function getAll() {
 //     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
 // }
 
-function update(id, first_name, last_name, email, phoneNumber, password) {
+function update(
+  id,
+  first_name,
+  last_name,
+  email,
+  phoneNumber,
+  oldpassword,
+  Newpassword,
+  ispasswordchangd
+) {
   //console.log(data);
+  const password = ispasswordchangd === 1 ? Newpassword : oldpassword;
   return dispatch => {
     dispatch(request({ id }));
     //loginuser(user_name,password) //await
@@ -143,9 +153,11 @@ function update(id, first_name, last_name, email, phoneNumber, password) {
       .then(
         res => {
           if (res === 200) {
+            const suc = "Succesfully Update User Details";
             dispatch(success(id));
+            dispatch(alertActions.success(suc));
           } else {
-            const err = "Username and/or Password incorrect";
+            const err = "Error Update User Details";
             dispatch(failure(err));
             dispatch(alertActions.error(err));
           }
