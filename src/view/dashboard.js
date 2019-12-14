@@ -65,6 +65,16 @@ class Dashboard extends Component {
                 />
               )}
             />
+            <Route
+              exact
+              path="/"
+              component={() => (
+                <Search
+                  default={this.props.userCity}
+                  loginstatus={this.props.loginStatus}
+                />
+              )}
+            />
             {/* <Route exact path="/profile" component={Profile} /> */}
           </Switch>
 
