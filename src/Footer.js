@@ -7,25 +7,26 @@ class Footer extends Component {
        <div className="footerSection">
 
          <div className="social">
-           <a href="" target="_blank" rel="noopener noreferrer">
+           <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
              <i className="fa fa-2x fa-facebook" aria-hidden="true" />
            </a>
-           <a href="" target="_blank" rel="noopener noreferrer">
+           
+           <a href="https://twitter.com/home" target="_blank" rel="noopener noreferrer">
              <i className="fa fa-2x fa-twitter" aria-hidden="true" />
            </a>
-           <a href="" target="_blank" rel="noopener noreferrer">
+           <a href="https://www.linkedin.com/in/rashmigpatil" target="_blank" rel="noopener noreferrer">
              <i className="fa fa-2x fa-linkedin" aria-hidden="true" />
            </a>
-           <a href="" target="_blank" rel="noopener noreferrer">
+           <a href="https://aboutme.google.com/u/0/?referer=gplus" target="_blank" rel="noopener noreferrer">
              <i className="fa fa-2x fa-google-plus" aria-hidden="true" />
            </a>
-           <a href="" target="_blank" rel="noopener noreferrer">
+           <a href="https://www.skype.com/en/" target="_blank" rel="noopener noreferrer">
              <i className="fa fa-2x fa-skype" aria-hidden="true" />
            </a>
-           {/* <a id="repo" href="https://github.com/alemesa/React-News-App" target="_blank" rel="noopener noreferrer">
+           <a id="repo" href="https://github.com/tejasnadgoud/neuZ" target="_blank" rel="noopener noreferrer">
              Repo
              <i className="fa fa-code-fork" aria-hidden="true" />
-           </a> */}
+           </a>
          </div>
 
          <a className="smoothScroll" href="#">

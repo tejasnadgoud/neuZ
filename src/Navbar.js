@@ -8,11 +8,15 @@ import App from "./App";
 import { Login } from "./login";
 import { Logout } from "./logout";
 import Search from "./Search.js";
+import Careers from "./Careers.js"
 import About from "./About";
+// import Contact from "./Contact.js"
 import "./Search.css";
 import PaypalButton from "./Paypal";
 import { Updateprofile } from "./updateprofile";
 import Main from './Stock/Main'
+import First from './First.js';
+import ContactUs from "./ContactUs.js";
 
 //import {userlogin,userlogout} from './actions';
 //import { withGlobalState } from 'react-globally'
@@ -148,7 +152,7 @@ class Navbar extends Component {
         <div>
           <nav className="navbar navbar-inverse navbar-expand-xl navbar-dark">
             <div className="navbar-header d-flex col">
-              <a className="nav-link navbar-brand" href="/AllChannel">
+              <a className="nav-link navbar-brand" href="/a">
                 neuZ <i className="fa glyphicon glyphicon-send fa-1x"></i>
               </a>
               <button
@@ -181,7 +185,7 @@ class Navbar extends Component {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a href="#" className="nav-link">
+                  <a href="/Contact" className="nav-link">
                     <i className="fa fa-users"></i>
                     <span>ContactUs</span>
                   </a>
@@ -193,7 +197,7 @@ class Navbar extends Component {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a href="#" className="nav-link">
+                  <a href="/Careers" className="nav-link">
                     <i className="fa fa-briefcase"></i>
                     <span>Careers</span>
                   </a>
@@ -281,6 +285,9 @@ class Navbar extends Component {
                 <Updateprofile username={this.state.userdetails} />
               )}
             />
+            <Route exact path="/Careers" component={() => <Careers />} />
+            <Route exact path="/Contact" component={() => <ContactUs />} />
+            <Route exact path="/a" children={props => <First default="bbc-news" loginstatus={this.props.loginStatus}/>}/>
           </Switch>
         </div>
       </Router>

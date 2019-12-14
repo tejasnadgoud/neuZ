@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Display from "./Display.js";
-import "./Display.css";
-import Outlet from "./Outlet.js";
-import "./Outlet.css";
+import React, { Component } from 'react';
+import axios from 'axios';
+import Display from './Display.js';
+import './Display.css';
+import Outlet from './Outlet.js';
+import './Outlet.css';
+import Footer from "./Footer";
 
 import { Button, ButtonGroup } from "reactstrap";
 
@@ -15,9 +16,9 @@ class Search extends Component {
     this.state = {
       data: [],
       count: 0,
-      value: "boston",
-      // value: this.props.default,
-      Islogin: this.props.loginstatus,
+      // value:'boston',
+      value: this.props.default,
+      Islogin : this.props.loginstatus,
       btnShow: true
     };
     console.log("Value in search.js: ", this.state.value);
@@ -216,6 +217,7 @@ class Search extends Component {
           </ButtonGroup> */}
 
         <Display default={this.state.value} />
+        {/* <Footer /> */}
       </div>
     );
   }

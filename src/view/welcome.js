@@ -10,6 +10,8 @@ import { history } from '../helpers/history';
 import { alertActions } from '../actions';
 import { PrivateRoute } from '../components';
 import { connect } from 'react-redux';
+import First from '../First.js';
+
 
 class Welcome extends Component {
   constructor(props) {
@@ -49,9 +51,10 @@ class Welcome extends Component {
         <Navbar loginStatus={this.props.loginStatus}/>
         {/* <Search default="bbc-news" /> */}
         <Switch>
-        <Route exact path="/" children={props => <Search default="bbc-news" loginstatus={this.props.loginStatus}/>}/>
+        <Route exact path="/" children={props => <First default="bbc-news" loginstatus={this.props.loginStatus}/>}/>
+        {/* <Route exact path="/" children={props => <Search default="bbc-news" loginstatus={this.props.loginStatus}/>}/> */}
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
         
       </div>
       </Router>

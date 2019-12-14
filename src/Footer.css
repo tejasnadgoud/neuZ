@@ -3,9 +3,12 @@
 	flex-direction: row;
 	justify-content: space-between;
 	margin: 0px 0px 10px 0px;
-	background: grey;
+	margin-top:auto;
+	background: white;
 	padding-bottom: 0;
-	position: relative;
+	position: fixed;
+	bottom:0;
+	width:100%;
 }
 
 .customfooter { 
@@ -56,6 +59,9 @@
 	cursor: pointer;
 }
 
+.fa-facebook:hover,
+.fa-google-plus:hover,
+.fa-skype:hover,
 .fa-github:hover,
 .fa-twitter:hover,
 .fa-linkedin:hover {
