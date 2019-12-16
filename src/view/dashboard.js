@@ -31,9 +31,9 @@ class Dashboard extends Component {
      });
     //this.props.setGlobalState({auth:false});
   }
-  
+
   componentDidMount(){
-    
+
 }
   render() {
     const { alert } = this.props;
@@ -46,22 +46,40 @@ class Dashboard extends Component {
     ];
     return (
       <Router>
-      <div className="app">
-        {/* <div>Dashboard</div> */}
-      <Navbar loginStatus={this.props.loginStatus} data={this.props.Username}/>
-        
-        <Switch>
-          <Route
-          exact 
-          path='/search'
-          component={() => <Search default={this.props.userCity} loginstatus={this.props.loginStatus}/>}
-        />
-        <Route exact path="/profile" component={Profile} />
-        
-        </Switch>
-        <Footer />
-        
-      </div>
+        <div className="app page-container1">
+          {/* <div>Dashboard</div> */}
+          {/* <Navbar loginStatus={this.props.loginStatus} data={this.props.Username}/> */}
+          <Navbar
+            loginStatus={this.props.loginStatus}
+            data={this.props.Userdetails}
+          />
+
+          <Switch>
+            <Route
+              exact
+              path="/search"
+              component={() => (
+                <Search
+                  default={this.props.userCity}
+                  loginstatus={this.props.loginStatus}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/"
+              component={() => (
+                <Search
+                  default={this.props.userCity}
+                  loginstatus={this.props.loginStatus}
+                />
+              )}
+            />
+            {/* <Route exact path="/profile" component={Profile} /> */}
+          </Switch>
+
+          <Footer className="finalFooter" />
+        </div>
       </Router>
     );
   }

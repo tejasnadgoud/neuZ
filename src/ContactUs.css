@@ -1,10 +1,10 @@
-.card-img-top{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 30%;
-    margin: 0 auto;
-    height:90px;
+.card-img-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 30%;
+  margin: 0 auto;
+  height: 90px;
 }
