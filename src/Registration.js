@@ -217,7 +217,11 @@ export default class Registration extends Component {
                 onChange={this.handleOnChangeEmail}
                 required
               />
-              <p>{this.state.email_error}</p>
+
+              <p>
+                <div style={{ color: "red" }}>{this.state.email_error}</div>
+              </p>
+             
             </div>
             <div className="fields">
               <p>{REGISTRATION_FIELDS.PHONE}</p>
@@ -228,7 +232,12 @@ export default class Registration extends Component {
                 onChange={this.handleOnChangePhone}
                 required
               />
-              <p>{this.state.phone_error}</p>
+
+              <p>
+                <div style={{ color: "red" }}>{this.state.phone_error}</div>
+              </p>
+              {/* <p>{this.state.phone_error}</p> */}
+
             </div>
             <div className="fields">
               <p>{COMMON_FIELDS.USER_NAME}</p>
@@ -253,7 +262,12 @@ export default class Registration extends Component {
                 autoComplete="password"
                 required
               />
-              <p>{this.state.password_error}</p>
+
+              <p>
+                <div style={{ color: "red" }}>{this.state.password_error}</div>
+              </p>
+              {/* <p>{this.state.password_error}</p> */}
+
             </div>
             <div className="buttons">
               <button

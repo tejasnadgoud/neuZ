@@ -1,0 +1,11 @@
+.card-img-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 530px;
+  margin: 0 auto;
+  height: 200px;
+  padding-top: 10px;
+}
