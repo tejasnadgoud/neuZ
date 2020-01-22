@@ -6,10 +6,11 @@ import "../Search.css";
 import Footer from "../Footer.js";
 import "../Footer.css";
 import Navbar from "../Navbar";
-import { history } from '../helpers/history';
-import { alertActions } from '../actions';
-import { PrivateRoute } from '../components';
-import { connect } from 'react-redux';
+import { history } from "../helpers/history";
+import { alertActions } from "../actions";
+import { PrivateRoute } from "../components";
+import { connect } from "react-redux";
+import First from "../First.js";
 
 class Welcome extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class Welcome extends Component {
       lat: 34.2,
       lon: -119.2,
       alt: 10e6,
-      auth : true
+      auth: true
     };
     this.globeRef = React.createRef();
     this.store = this.props.store;
@@ -28,10 +29,8 @@ class Welcome extends Component {
     //      //this.props.clearAlerts();
     //  });
   }
-  
-  componentDidMount(){
-    
-}
+
+  componentDidMount() {}
   render() {
     const { alert } = this.props;
     const layers = [
@@ -43,22 +42,27 @@ class Welcome extends Component {
     ];
     return (
       <Router>
-      <div className="app">
-      
-        
-        <Navbar loginStatus={this.props.loginStatus}/>
-        {/* <Search default="bbc-news" /> */}
-        <Switch>
-        <Route exact path="/" children={props => <Search default="bbc-news" loginstatus={this.props.loginStatus}/>}/>
-        </Switch>
-        {/* <Footer /> */}
-        
-      </div>
+        <div className="app">
+          <Navbar loginStatus={this.props.loginStatus} />
+          {/* <Search default="bbc-news" /> */}
+          <Switch>
+            {/* <Route exact path="/" children={props => <Search default="bbc-news" loginstatus={this.props.loginStatus}/>}/> */}
+            <Route
+              exact
+              path="/"
+              children={props => (
+                <First
+                  default="bbc-news"
+                  loginstatus={this.props.loginStatus}
+                />
+              )}
+            />
+          </Switch>
+          <Footer />
+        </div>
       </Router>
-
     );
   }
 }
-
 
 export default Welcome;
