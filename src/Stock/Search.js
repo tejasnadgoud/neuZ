@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 // the search dropdown for the Stock Quote page
 const Search = ({
@@ -9,12 +9,17 @@ const Search = ({
   handleQuoteChange,
   handleSearchKeyDowns,
   searchValue,
-  searchResults,
+  searchResults
 }) => {
   return (
     <div className="search-container">
       <form className="searchForm">
         <div className="searchForm__inputs">
+          <br />
+
+          <h2 style={{ fontFamily: "Courier New", color: "darkblue" }}>
+            Search Stocks
+          </h2>
           <input
             type="text"
             className="searchForm__text"
@@ -25,7 +30,7 @@ const Search = ({
             onBlur={clearSearch}
           />
           {/* if the search input value is not empty show the clear button */}
-          {searchValue !== '' && (
+          {searchValue !== "" && (
             <button
               className="searchForm__clear"
               onClick={e => {
@@ -36,9 +41,11 @@ const Search = ({
               clear
             </button>
           )}
+          <br />
+          <br />
         </div>
         {/* if the search results and search input value are not empty show this dropdown */}
-        {searchResults != null && searchValue !== '' && (
+        {searchResults != null && searchValue !== "" && (
           <div className="searchForm__results">
             {searchResults.map((result, i) => {
               const { symbol, name } = result;
@@ -46,15 +53,15 @@ const Search = ({
                 <ul
                   className={
                     cursor === i
-                      ? 'searchForm__result active'
-                      : 'searchForm__result'
+                      ? "searchForm__result active"
+                      : "searchForm__result"
                   }
                   key={symbol}
                   // use onMouseDown instead of onClick because it fires before onBlur
                   onMouseDown={() => {
                     handleQuoteChange(symbol);
                   }}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                 >
                   <li className="searchForm__resultSymbol">{symbol}</li>
                   <li className="searchForm__resultName">{name}</li>
@@ -75,7 +82,7 @@ Search.propTypes = {
   handleQuoteChange: PropTypes.func.isRequired,
   handleSearchKeyDowns: PropTypes.func.isRequired,
   searchValue: PropTypes.string.isRequired,
-  searchResults: PropTypes.array,
+  searchResults: PropTypes.array
 };
 
 export default Search;

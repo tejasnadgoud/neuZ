@@ -11,7 +11,6 @@ import {
   Label,
   Input
 } from "reactstrap";
-
 class ContactUs extends Component {
   state = {
     name: "",
@@ -52,7 +51,10 @@ class ContactUs extends Component {
       <>
         <div>
           <h1 className="p-heading1">Get in Touch</h1>
-          <Form onSubmit={this.handleSubmit.bind(this)}>
+          <Form
+            onSubmit={this.handleSubmit.bind(this)}
+            style={{ paddingLeft: "500px", paddingRight: "500px" }}
+          >
             <FormGroup controlId="formBasicName">
               <img className="card-img-top" src={formslogo} alt="neuZ"></img>
               <Label className="text-muted">Name</Label>
@@ -62,11 +64,9 @@ class ContactUs extends Component {
                 value={this.state.name}
                 className="text-primary"
                 onChange={this.handleChange.bind(this, "name")}
-                placeholder="Name *"
-                required
+                placeholder="Name"
               />
             </FormGroup>
-
             <FormGroup controlId="formBasicEmail">
               <Label className="text-muted">Email address</Label>
               <Input
@@ -75,8 +75,7 @@ class ContactUs extends Component {
                 value={this.state.email}
                 className="text-primary"
                 onChange={this.handleChange.bind(this, "email")}
-                placeholder="Enter email *"
-                required
+                placeholder="Enter email"
               />
             </FormGroup>
             <FormGroup controlId="formBasicSubject">
@@ -87,8 +86,7 @@ class ContactUs extends Component {
                 className="text-primary"
                 value={this.state.subject}
                 onChange={this.handleChange.bind(this, "subject")}
-                placeholder="Subject *"
-                required
+                placeholder="Subject"
               />
             </FormGroup>
             <FormGroup controlId="formBasicMessage">
@@ -98,12 +96,23 @@ class ContactUs extends Component {
                 name="message"
                 className="text-primary"
                 value={this.state.message}
+                style={{ height: "150px" }}
                 onChange={this.handleChange.bind(this, "message")}
-                placeholder="Message *"
-                required
+                placeholder="Message "
               />
             </FormGroup>
-            <Button variant="primary" type="submit">
+            <Button
+              style={{
+                backgroundColor: "grey",
+                color: "white",
+                paddingLeft: "100px",
+                paddingRight: "100px",
+                textAlign: "center",
+                justifyContent: "center"
+              }}
+              variant="secondary"
+              type="submit"
+            >
               Submit
             </Button>
           </Form>
